@@ -1,0 +1,81 @@
+/* Dark Mode & Modern Styling */
+body {
+    background-color: #0d1117; /* GitHub dark background */
+    color: #c9d1d9; /* Light gray text */
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Glowing Container */
+.container {
+    background: linear-gradient(145deg, #161b22, #1c2128);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(100, 200, 255, 0.2);
+    transition: 0.3s ease-in-out;
+}
+
+/* Glowing Heading */
+h1 {
+    font-size: 2.5em;
+    color: #58a6ff;
+    text-shadow: 0 0 10px rgba(88, 166, 255, 0.8);
+}
+
+/* Highlighting 'Panni Academy' */
+h1 span {
+    color: #ff9800;
+    text-shadow: 0 0 15px rgba(255, 152, 0, 0.8);
+}
+
+/* Stylish Paragraph */
+p {
+    font-size: 1.2em;
+    color: #8b949e;
+}
+
+/* Neon Glowing Button */
+button {
+    background: #238636;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.3s ease-in-out;
+    box-shadow: 0 0 10px rgba(35, 134, 54, 0.6);
+}
+
+/* Button Hover Effect */
+button:hover {
+    background: #2ea043;
+    box-shadow: 0 0 20px rgba(35, 134, 54, 1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 80%;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    p {
+        font-size: 1em;
+    }
+
+    button {
+        font-size: 1em;
+    }
+}
