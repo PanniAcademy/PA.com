@@ -22,8 +22,3 @@ if ('serviceWorker' in navigator) {
 
 window.alert("Running PWA Version");
 
-if (window.matchMedia('(display-mode: standalone)').matches) {
-    console.log('App is running in standalone mode');
-} else {
-    window.location.href = "index.html";  // Redirect web users to index.html
-}
