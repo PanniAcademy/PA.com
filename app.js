@@ -1,4 +1,4 @@
-console.log("Running PWA Version");
+window.alert("Running PWA Version");
 
 if (window.matchMedia('(display-mode: standalone)').matches) {
     console.log('App is running in standalone mode');
