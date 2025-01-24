@@ -4,21 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script defer src="web.js"></script>
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <script>
-    if (window.matchMedia('(display-mode: standalone)').matches) {
-      window.location.href = "app.html";  // Ensure PWA users are sent to the right version
-    }
-  </script>
-
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <title>PANNI ACADEMY - Web</title>
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="Images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        if (window.matchMedia('(display-mode: standalone)').matches) {
+            window.location.href = "app.html";  
+        }
+    </script>
 </head>
 <body>
-    <h1>Welcome to the Web Version</h1>
-    <p>This is the web version of the Panni Academy.</p>
-    <button id="installButton">📲 Install App</button>
+    <div class="container">
+        <h1>Welcome to <span>Panni Academy</span></h1>
+        <p>This is the web version of Panni Academy.</p>
+        <button id="installButton">📲 Install App</button>
+    </div>
 </body>
 </html>
