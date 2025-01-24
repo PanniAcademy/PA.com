@@ -1,4 +1,4 @@
-console.log("Running Web Version");
+window.alert("Running Web Version");
 
 // Ensure service worker is registered
 if ('serviceWorker' in navigator) {
