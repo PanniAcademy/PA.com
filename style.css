@@ -108,7 +108,7 @@ p {
 
 /* 🔹 Video Container (Bigger) */
 .video-container {
-    position: relative;
+    position: absolute;
     width: 85%;
     max-width: 900px;
     margin: auto;
