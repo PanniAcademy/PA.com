@@ -1,0 +1,132 @@
+/* 🔥 Background and Text Styling */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #1B262C;
+  color: #FBEAEB;
+  font-family: 'Arial', sans-serif;
+}
+
+/* 🔷 Stylish Navigation */
+nav {
+  background-color: #3282B8;
+  padding: 10px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav button {
+  background-color: #00BFA6;
+  color: white;
+  padding: 10px 20px;
+  border: 2px solid #FFD700;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+nav button:hover {
+  background-color: #FFD700;
+  color: #111;
+}
+
+/* 🌟 Sidebar */
+.sidebar {
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  top: 0;
+  left: -250px;
+  background-color: #111;
+  padding-top: 60px;
+  transition: 0.3s;
+  z-index: 1;
+  box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
+}
+
+.sidebar a {
+  padding: 15px 20px;
+  text-decoration: none;
+  font-size: 18px;
+  color: #CADCFC;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  background-color: #575757;
+  color: white;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+}
+
+/* 📜 Container Box */
+.container {
+  margin: 80px auto;
+  max-width: 900px;
+  background-color: #0F4C75;
+  border-radius: 10px;
+  padding: 30px;
+  text-align: center;
+  color: white;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  border: 3px solid #FFD700;
+}
+
+/* ✨ Fancy Headings */
+h1 {
+  font-size: 2.5rem;
+  color: #FFD700;
+  text-shadow: 0px 0px 10px rgba(255, 215, 0, 0.8);
+}
+
+h3 {
+  background-color: #3282B8;
+  padding: 15px;
+  border-radius: 5px;
+  color: #FBEAEB;
+  border: 2px solid #FFD700;
+}
+
+/* ✨ List Styling */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  font-size: 1.1rem;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  margin: 5px 0;
+  color: #CADCFC;
+  transition: 0.3s;
+}
+
+ul li:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* 🚀 Section Divider */
+hr {
+  border-color: #FFD700;
+  width: 80%;
+  margin: 30px auto;
+}
+
+/* Sidebar opened transition */
+.container.opened {
+  margin-left: 250px;
+}
