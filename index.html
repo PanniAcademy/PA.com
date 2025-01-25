@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script defer src="web.js"></script>
+    <script defer src="script.js"></script>
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <title>PANNI ACADEMY - Web</title>
@@ -17,10 +17,47 @@
     </script>
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to <span>Panni Academy</span></h1>
-        <p>This is the web version of Panni Academy.</p>
-        <button id="installButton">📲 Install App</button>
-    </div>
+
+<!-- Sidebar Menu -->
+<div class="sidebar" id="mySidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+  <a href="Admission.HTML">Admission</a>
+  <a href="About Academy.HTML">About Academy</a>
+  <a href="images of academy.HTML">Images of Academy</a>
+  <a href="Achievements.html">Achievements</a>
+  <a href="shop.html">Shop</a>
+  <a href="PanniAI.html">Panni Helper</a>
+  <a href="review.html">Reviews</a>
+</div>
+
+<!-- Navigation Bar -->
+<nav>
+  <button onclick="openNav()">☰ Menu</button>
+  <button id="installButton">📲 Install App</button>
+  <button onclick="toggleDarkMode()">🌙 Dark Mode</button>
+</nav>
+
+<!-- Main Content -->
+<center>
+  <div class="container">
+    <h1>PANNI ACADEMY OF WATER SPORTS</h1>
+  </div>
+  <h1><b>"DIVE INTO EXCELLENCE: WHERE WAVES MEET MASTERY!"</b></h1>
+
+  <!-- Video Background -->
+  <div class="video-container">
+      <video autoplay loop muted playsinline>
+        <source src="Images/PanniAcademy.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+  </div>
+
+  <p>Welcome to <b>PANNI ACADEMY OF WATER SPORTS</b>, located in the heart of Rajasthan! Our academy is the perfect fusion of skill and adventure, where every ripple in the water reflects passion and determination. Whether you're taking your first dive or mastering advanced techniques, this is the place for you. Join our academy to discover the thrill of water sports under the guidance of experts like Mr. Panni.</p>
+  
+  <p>With world-class instructors and state-of-the-art facilities, the academy offers comprehensive programs that include swimming, kayaking, windsurfing, and much more. Experience a unique blend of desert charm and aquatic excitement, right here at Panni Academy!</p>
+
+  <h3>WHAT ARE YOU WAITING FOR? EMBARK ON AN AQUATIC ADVENTURE TODAY!</h3>
+</center>
+
 </body>
 </html>
