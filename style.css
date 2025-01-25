@@ -1,7 +1,7 @@
 /* 🔥 Dark Mode & Modern Styling */
 body {
-    background-color: #0d1117; /* GitHub dark background */
-    color: #c9d1d9; /* Light gray text */
+    background-color: #0d1117; 
+    color: #c9d1d9;
     font-family: 'Arial', sans-serif;
     text-align: center;
     margin: 0;
@@ -12,21 +12,22 @@ body {
     height: 100vh;
 }
 
-/* Navigation Bar (Top Left) */
+/* 🔹 Fixed Navigation Bar (Top Left) */
 nav {
-    position: absolute;
+    position: fixed;  /* Fixed at top-left */
     top: 10px;
     left: 10px;
     display: flex;
     gap: 5px;
+    z-index: 1000;  /* Ensures it stays on top */
 }
 
-/* Smaller Buttons (Menu, Install, Dark Mode) */
+/* 🔹 Smaller Buttons */
 nav button {
     background: #238636;
     color: white;
     border: none;
-    padding: 8px 15px;
+    padding: 8px 12px;
     font-size: 0.9em;
     cursor: pointer;
     border-radius: 5px;
@@ -37,7 +38,7 @@ nav button:hover {
     background: #2ea043;
 }
 
-/* Glowing Sidebar */
+/* 🔹 Glowing Sidebar */
 .sidebar {
     height: 100%;
     width: 0;
@@ -51,6 +52,7 @@ nav button:hover {
     box-shadow: 0 0 20px rgba(88, 166, 255, 0.3);
 }
 
+/* 🔹 Sidebar Links */
 .sidebar a {
     padding: 15px;
     text-decoration: none;
@@ -72,7 +74,7 @@ nav button:hover {
     color: white;
 }
 
-/* Content Container (Bigger & Centered) */
+/* 🔹 Content Container (Bigger) */
 .container {
     background: linear-gradient(145deg, #161b22, #1c2128);
     padding: 50px;
@@ -81,29 +83,30 @@ nav button:hover {
     transition: 0.3s ease-in-out;
     width: 85%;
     max-width: 900px;
+    margin-top: 50px; /* Prevents overlapping with navbar */
 }
 
-/* Glowing Headings (Bigger) */
+/* 🔹 Larger Headings */
 h1 {
     font-size: 3em;
     color: #58a6ff;
     text-shadow: 0 0 15px rgba(88, 166, 255, 0.8);
 }
 
-/* Highlighting 'Panni Academy' */
+/* 🔹 Highlighting 'Panni Academy' */
 h1 span {
     color: #ff9800;
     text-shadow: 0 0 20px rgba(255, 152, 0, 0.9);
 }
 
-/* Stylish Paragraph (Bigger) */
+/* 🔹 Bigger Paragraph */
 p {
     font-size: 1.4em;
     color: #8b949e;
     line-height: 1.6;
 }
 
-/* Video Background (Bigger) */
+/* 🔹 Video Container (Bigger) */
 .video-container {
     position: relative;
     width: 85%;
@@ -119,7 +122,7 @@ video {
     border-radius: 10px;
 }
 
-/* Glowing Button (Neon Effect) */
+/* 🔹 Glowing Button */
 button {
     background: #238636;
     color: white;
@@ -133,13 +136,13 @@ button {
     box-shadow: 0 0 15px rgba(35, 134, 54, 0.6);
 }
 
-/* Button Hover Effect */
+/* 🔹 Button Hover Effect */
 button:hover {
     background: #2ea043;
     box-shadow: 0 0 20px rgba(35, 134, 54, 1);
 }
 
-/* Dark Mode Toggle */
+/* 🔹 Dark Mode Toggle */
 .dark-mode {
     background-color: #f4f4f4;
     color: #333;
@@ -162,7 +165,7 @@ button:hover {
     color: white;
 }
 
-/* Responsive Design */
+/* 🔹 Responsive Design */
 @media (max-width: 768px) {
     .container {
         width: 90%;
