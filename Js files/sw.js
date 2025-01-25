@@ -2,8 +2,8 @@ const CACHE_NAME = 'panni-academy-cache-v2';
 const urlsToCache = [
   '/index.html',
   '/app.html',
-  '/web.js',
-  '/app.js',
+  '/Js files/web.js',
+  'Js files/app.js',
   '/manifest.json',
   '/Images/32x32.png'
 ];
