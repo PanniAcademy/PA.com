@@ -1,0 +1,131 @@
+<Doctype html>
+<html>
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+<title> Achievements </title>
+<body>
+  <body bgcolor=" #2F3C7E" text="#FBEAEB">
+  <style>
+      nav {
+      background-color: iceblue;
+      padding: 15px;
+      text-align: left;
+    }
+
+    nav button {
+      background-color: #00ffd0;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 0 10px;
+    }
+
+    nav button:hover {
+      background-color: #45a049;
+    }
+
+    .sidebar {
+      height: 100%;
+      width: 250px; /* Adjust width as needed */
+      position: fixed;
+      top: 0;
+      left: -250px; /* Hide sidebar by default */
+      background-color: #111;
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 60px;
+      z-index: 1;
+    }
+
+    .sidebar a {
+      padding: 8px 8px 8px 32px;
+      text-decoration: none;
+      font-size: 18px;
+      color: #818181;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .sidebar a:hover {
+      color: #f1f1f1;
+    }
+
+    .sidebar .closebtn {
+      position: absolute;
+      top: 0;
+      right: 20px;
+      font-size: 36px;
+      margin-right: 80px;
+    }
+
+    .content {
+      transition: margin-left 0.5s;
+      padding: 16px;
+    }
+
+    /* Adjust content margin when sidebar opens */
+    .content.opened {
+      margin-left: 250px;
+    }
+</style>
+    <div class="sidebar" id="mySidebar">
+  <a href=".\index.html">Home</a>
+  <a href=".\About Academy.HTML">About Academy</a>
+  <a href=".\images of academy.HTML">Images of Academy</a>
+  <a href=".\Admission.HTML"> Admission </a>
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+</div>
+
+<!-- Rest of your content -->
+<nav>
+  <button onclick="openNav()"> ☰ </button>
+</nav>
+<h2> The heroic achievements achieved by our students are: </h2> <br><br>
+<p> 
+<h4><b>Desert Oasis Transformation:</b></h4>
+Successfully established a state-of-the-art water sports academy in the heart of the desert, turning an arid landscape into a thriving aquatic hub.<br><br>
+
+<h4><b>Innovative Water Conservation:</b></h4><br>
+Implemented cutting-edge water recycling and conservation techniques to maintain a sustainable and eco-friendly facility in a challenging environment.<br><br>
+
+<h4><b>National Recognition:</b></h4><br>
+Awarded the "Best Water Sports Academy" in the region by the National Sports Association for outstanding facilities and training programs.<br><br>
+
+<h4><b>Record-Breaking Performances:</b></h4><br>
+Trained athletes who have gone on to set national records in swimming, kayaking, and windsurfing competitions, showcasing the high caliber of our training programs.<br><br>
+
+<h4><b>Community Engagement:</b></h4><br>
+Organized annual desert water sports festivals, attracting thousands of participants and spectators, and promoting water sports awareness and enthusiasm in the community.<br><br>
+
+<h4><b>Safety Excellence:</b></h4><br>
+Achieved a 100% safety record, with zero major incidents reported, thanks to rigorous training protocols and state-of-the-art safety equipment.<br><br>
+
+<h4><b>Diverse Training Programs:</b></h4><br>
+Developed and offered a wide range of courses for all skill levels, from beginner to advanced, ensuring inclusive and comprehensive training opportunities.<br><br>
+
+<h4><b>Youth Empowerment:</b></h4><br>
+Launched successful youth programs that have inspired hundreds of young athletes to pursue careers in water sports, fostering the next generation of champions.<br><br>
+
+<h4><b>Global Partnerships:</b></h4><br>
+Formed strategic partnerships with international water sports organizations, bringing global best practices and training methodologies to the academy.<br><br>
+
+<h4><b>Environmental Stewardship:</b></h4><br>
+
+Recognized for our commitment to environmental sustainability, including efforts to preserve the natural desert landscape while creating a vibrant aquatic environment.<br></p>
+  <script>
+  function openNav() {
+    document.getElementById("mySidebar").style.left = "0";
+    document.querySelector('.content').classList.add('opened');
+  }
+
+  function closeNav() {
+    document.getElementById("mySidebar").style.left = "-250px";
+    document.querySelector('.content').classList.remove('opened');
+  }
+  </script>
+</body>
+</html>
