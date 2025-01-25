@@ -20,7 +20,7 @@ if ('serviceWorker' in navigator) {
         .catch(err => console.error('Service Worker registration failed:', err));
 }
 
-window.alert("Running PWA Version");
+console.log("Running PWA Version");
 // Open Sidebar
 function openNav() {
     document.getElementById("mySidebar").style.width = "250px";
