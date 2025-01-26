@@ -22,6 +22,7 @@
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getMessaging, getToken } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
         // TODO: Add SDKs for Firebase products that you want to use
         // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -40,25 +41,40 @@
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const messaging = getMessaging(app);
+        const db = getFirestore(app);
 
-        navigator.serviceWorker.register("sw.js").then(registration => {
-            getToken(messaging, {
-                serviceWorkerRegistration: registration,
-                vapidKey: 'BN3Q2xi4T3SaR57-LPINax16NGaBPrZMOMlo-R6HlbxGEl7C7gIsXDN2ymGcUW2dmp2pYKC0uTuuXkeKpr36sng' }).then((currentToken) => {
-                if (currentToken) {
-                    console.log("Token is: "+currentToken);
-                    // Send the token to your server and update the UI if necessary
-                    // ...
-                } else {
-                    // Show permission request UI
-                    console.log('No registration token available. Request permission to generate one.');
-                    // ...
-                }
-            }).catch((err) => {
-                console.log('An error occurred while retrieving token. ', err);
-                // ...
-            });
+navigator.serviceWorker.register("sw.js").then(async (registration) => {
+    try {
+        const currentToken = await getToken(messaging, {
+            serviceWorkerRegistration: registration,
+            vapidKey: 'BOkdTMOK0FWXqTqD0chCs6C2DPk31Ia48mn0kQAc_ndB-cpou2LkYf7dZzF166fSSbunbXmUEdIOX8dAyxVVUYM'
         });
+
+        if (currentToken) {
+            //document.getElementById("tokenDisplay").innerText = "Token: " + currentToken;
+            console.log("FCM Token:", currentToken);
+
+            // Store Token in Firestore
+            try {
+                await addDoc(collection(db, "fcm_tokens"), { token: currentToken });
+                console.log("Token saved to Firestore ✅");
+                console.log("Token saved successfully!");
+            } catch (error) {
+                console.error("❌ Error saving token to Firestore:", error);
+                console.log("Error saving token: " + error.message);
+            }
+        } else {
+            console.log("No FCM Token available. Request permission first.");
+            console.log("No FCM Token available. Please allow notifications.");
+        }
+    } catch (err) {
+        console.error("❌ Error retrieving FCM Token:", err);
+        console.log("Error retrieving FCM Token: " + err.message);
+    }
+}).catch((err) => {
+    console.error("❌ Service Worker registration failed:", err);
+    console.log("Service Worker registration failed: " + err.message);
+});
 
 
 
