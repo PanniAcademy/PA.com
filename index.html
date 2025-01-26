@@ -58,15 +58,15 @@ navigator.serviceWorker.register("sw.js").then(async (registration) => {
                 console.log("Token saved successfully!");
             } catch (error) {
                 console.error("❌ Error saving token to Firestore:", error);
-                console.log("Error saving token: " + error.message);
+                window.alert("Error saving token: " + error.message);
             }
         } else {
             console.log("No FCM Token available. Request permission first.");
-            console.log("No FCM Token available. Please allow notifications.");
+            window.alert("No FCM Token available. Please allow notifications.");
         }
     } catch (err) {
         console.error("❌ Error retrieving FCM Token:", err);
-        console.log("Error retrieving FCM Token: " + err.message);
+        window.alert("Error retrieving FCM Token: " + err.message);
     }
 }).catch((err) => {
     console.error("❌ Service Worker registration failed:", err);
