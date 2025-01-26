@@ -1,3 +1,21 @@
+// Firebase Messaging Service Worker
+self.addEventListener("push", (event) => {
+    const notif = event.data.json().notification;
+
+    event.waitUntil(self.registration.showNotification(notif.title , {
+        body: notif.body,
+        icon: notif.icon || https://sreehariajesh.github.io/panniAcademy.com/Images/32x32.png/
+        data: {
+            url: notif.click_action || https://sreehariajesh.github.io/panniAcademy.com/
+        }
+    }));
+});
+
+self.addEventListener("notificationclick", (event) => {
+    event.waitUntil(clients.openWindow(event.notification.data.url));
+});
+
+
 const CACHE_NAME = 'panni-academy-cache-v2';
 const urlsToCache = [
   '/index.html',
