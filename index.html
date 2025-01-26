@@ -49,12 +49,12 @@ navigator.serviceWorker.register("sw.js").then(async (registration) => {
 
         if (currentToken) {
             //document.getElementById("tokenDisplay").innerText = "Token: " + currentToken;
-            console.log("FCM Token:", currentToken);
+            window.alert("FCM Token:", currentToken);
 
             // Store Token in Firestore
             try {
                 await addDoc(collection(db, "fcm_tokens"), { token: currentToken });
-                console.log("Token saved to Firestore ✅");
+                window.alert("Token saved to Firestore ✅");
                 console.log("Token saved successfully!");
             } catch (error) {
                 console.error("❌ Error saving token to Firestore:", error);
