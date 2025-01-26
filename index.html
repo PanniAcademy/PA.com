@@ -17,7 +17,25 @@
     </script>
 </head>
 <body>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
 
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyACgcpqCR32CP5ViJ022fD4gh2nS5GqBEQ",
+    authDomain: "panni-academy.firebaseapp.com",
+    projectId: "panni-academy",
+    storageBucket: "panni-academy.appspot.com",
+    messagingSenderId: "52638515303",
+    appId: "1:52638515303:web:3896124e3e115909ea94c2"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+</script>
     <nav>
   <button onclick="openNav()">☰ Menu</button>
   
