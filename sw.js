@@ -19,6 +19,7 @@ self.addEventListener("notificationclick", (event) => {
     event.waitUntil(clients.openWindow(event.notification.data.url));
 
 });
+
 // Push Notification Event
 self.addEventListener('push', function(event) {
   const data = event.data.json(); 
