@@ -10,74 +10,51 @@
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="Images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
-    <script>
-        if (window.matchMedia('(display-mode: standalone)').matches) {
-            window.location.href = "app.html";  
-        }
-    </script>
-</head>
-<body>
-
     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getMessaging, getToken } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging.js";
-        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
         // TODO: Add SDKs for Firebase products that you want to use
         // https://firebase.google.com/docs/web/setup#available-libraries
 
         // Your web app's Firebase configuration
         // For Firebase JS SDK v7.20.0 and later, measurementId is optional
- const firebaseConfig = {
-    apiKey: "AIzaSyACgcpqCR32CP5ViJ022fD4gh2nS5GqBEQ",
-    authDomain: "panni-academy.firebaseapp.com",
-    projectId: "panni-academy",
-    storageBucket: "panni-academy.firebasestorage.app",
-    messagingSenderId: "52638515303",
-    appId: "1:52638515303:web:3896124e3e115909ea94c2"
+        const firebaseConfig = {
+            apiKey: "AIzaSyD4ZJYj51aGktzHM7YCvOGXJCb_sqER-IA",
+            authDomain: "hello-notif-63ad4.firebaseapp.com",
+            projectId: "hello-notif-63ad4",
+            storageBucket: "hello-notif-63ad4.appspot.com",
+            messagingSenderId: "852811610870",
+            appId: "1:852811610870:web:6d6cc83137a8e6a026cad7",
+            measurementId: "G-YERW0QQJ5T"
         };
 
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const messaging = getMessaging(app);
-        const db = getFirestore(app);
 
-navigator.serviceWorker.register("sw.js").then(async (registration) => {
-    try {
-        const currentToken = await getToken(messaging, {
-            serviceWorkerRegistration: registration,
-            vapidKey: 'BOkdTMOK0FWXqTqD0chCs6C2DPk31Ia48mn0kQAc_ndB-cpou2LkYf7dZzF166fSSbunbXmUEdIOX8dAyxVVUYM'
+        navigator.serviceWorker.register("sw.js").then(registration => {
+            getToken(messaging, {
+                serviceWorkerRegistration: registration,
+                vapidKey: 'BN3Q2xi4T3SaR57-LPINax16NGaBPrZMOMlo-R6HlbxGEl7C7gIsXDN2ymGcUW2dmp2pYKC0uTuuXkeKpr36sng' }).then((currentToken) => {
+                if (currentToken) {
+                    console.log("Token is: "+currentToken);
+                    // Send the token to your server and update the UI if necessary
+                    // ...
+                } else {
+                    // Show permission request UI
+                    console.log('No registration token available. Request permission to generate one.');
+                    // ...
+                }
+            }).catch((err) => {
+                console.log('An error occurred while retrieving token. ', err);
+                // ...
+            });
         });
 
-        if (currentToken) {
-            //document.getElementById("tokenDisplay").innerText = "Token: " + currentToken;
-            window.alert("FCM Token:", currentToken);
-
-            // Store Token in Firestore
-            try {
-                await addDoc(collection(db, "fcm_tokens"), { token: currentToken });
-                window.alert("Token saved to Firestore ✅");
-                console.log("Token saved successfully!");
-            } catch (error) {
-                console.error("❌ Error saving token to Firestore:", error);
-                window.alert("Error saving token: " + error.message);
-            }
-        } else {
-            window.alert("No FCM Token available. Request permission first.");
-            console.log("No FCM Token available. Please allow notifications.");
-        }
-    } catch (err) {
-        console.error("❌ Error retrieving FCM Token:", err);
-        window.alert("Error retrieving FCM Token: " + err.message);
-    }
-}).catch((err) => {
-    console.error("❌ Service Worker registration failed:", err);
-    window.alert("Service Worker registration failed: " + err.message);
-});
 
 
-
-                </script>
+    </script>
     <nav>
   <button onclick="openNav()">☰ Menu</button>
   
