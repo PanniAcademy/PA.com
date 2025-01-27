@@ -37,16 +37,16 @@ const firebaseConfig = {
                 serviceWorkerRegistration: registration,
                 vapidKey: 'BOkdTMOK0FWXqTqD0chCs6C2DPk31Ia48mn0kQAc_ndB-cpou2LkYf7dZzF166fSSbunbXmUEdIOX8dAyxVVUYM' }).then((currentToken) => {
                 if (currentToken) {
-                    console.log("Token is: "+currentToken);
+                    window.alert("Token is: "+currentToken);
                     // Send the token to your server and update the UI if necessary
                     // ...
                 } else {
                     // Show permission request UI
-                    console.log('No registration token available. Request permission to generate one.');
+                    window.alert('No registration token available. Request permission to generate one.');
                     // ...
                 }
             }).catch((err) => {
-                console.log('An error occurred while retrieving token. ', err);
+                window.alert('An error occurred while retrieving token. ', err);
                 // ...
             });
         });
