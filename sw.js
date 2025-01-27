@@ -26,7 +26,7 @@ const urlsToCache = [
   '/index.html',
   '/app.html',
   '/Js files/web.js',
-  'Js files/app.js',
+  '/Js files/app.js',
   '/manifest.json',
   '/Images/32x32.png'
 ];
