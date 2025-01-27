@@ -20,17 +20,6 @@ self.addEventListener("notificationclick", (event) => {
 
 });
 
-// Push Notification Event
-self.addEventListener('push', function(event) {
-  const data = event.data.json(); 
-  console.log('Received push message:', data);
-
-  const notificationOptions = {
-    body: data.message,
-    icon: '/path/to/your/icon.png'
-  };
-  self.registration.showNotification(data.title, notificationOptions);
-});
 
 const CACHE_NAME = 'panni-academy-cache-v2';
 const urlsToCache = [
