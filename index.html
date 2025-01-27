@@ -74,7 +74,7 @@ const firebaseConfig = {
         navigator.serviceWorker.register("sw.js").then(registration => {
             getToken(messaging, {
                 serviceWorkerRegistration: registration,
-                vapidKey: 'BOkdTMOK0FWXqTqD0chCs6C2DPk31Ia48mn0kQAc_ndB-cpou2LkYf7dZzF166fSSbunbXmUEdIOX8dAyxVVUYM' }).then((currentToken) => {
+                vapidKey: 'BPcBp7pFxUjy5jRGmI-Cexq55Zisn2RgEN15d83F1IecmEzdFLnHKDgZJ0UJoyw5T511zdZbclXIX9GAg9JonrE' }).then((currentToken) => {
                 if (currentToken) {
                     window.alert("Token is: "+currentToken);
                     // Send the token to your server and update the UI if necessary
