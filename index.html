@@ -72,9 +72,9 @@
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
-          const messaging = getMessaging(app);
+  const messaging = getMessaging(app);
 
-        navigator.serviceWorker.register("sw.js").then(registration => {
+    navigator.serviceWorker.register("sw.js").then(registration => {
             getToken(messaging, {
                 serviceWorkerRegistration: registration,
                 vapidKey: 'BH1R_OTbtV-7hkbnfUkxvZFQW_0bWFHWfvuv9buVLxhJ0Y0H4NTbXHzrwVeAVRo_vIzbMWLI5WB-YERueiK8dnw' }).then((currentToken) => {
