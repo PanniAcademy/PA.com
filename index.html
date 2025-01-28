@@ -72,6 +72,26 @@
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
+          const messaging = getMessaging(app);
+
+        navigator.serviceWorker.register("sw.js").then(registration => {
+            getToken(messaging, {
+                serviceWorkerRegistration: registration,
+                vapidKey: 'BN3Q2xi4T3SaR57-LPINax16NGaBPrZMOMlo-R6HlbxGEl7C7gIsXDN2ymGcUW2dmp2pYKC0uTuuXkeKpr36sng' }).then((currentToken) => {
+                if (currentToken) {
+                    window.alert("Token is: "+currentToken);
+                    // Send the token to your server and update the UI if necessary
+                    // ...
+                } else {
+                    // Show permission request UI
+                    window.alert('No registration token available. Request permission to generate one.');
+                    // ...
+                }
+            }).catch((err) => {
+                window.alert('An error occurred while retrieving token. ', err);
+                // ...
+            });
+        });
 </script>
 </body>
 </html>
