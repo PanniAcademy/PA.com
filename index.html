@@ -77,7 +77,7 @@
         navigator.serviceWorker.register("sw.js").then(registration => {
             getToken(messaging, {
                 serviceWorkerRegistration: registration,
-                vapidKey: 'BN3Q2xi4T3SaR57-LPINax16NGaBPrZMOMlo-R6HlbxGEl7C7gIsXDN2ymGcUW2dmp2pYKC0uTuuXkeKpr36sng' }).then((currentToken) => {
+                vapidKey: 'BH1R_OTbtV-7hkbnfUkxvZFQW_0bWFHWfvuv9buVLxhJ0Y0H4NTbXHzrwVeAVRo_vIzbMWLI5WB-YERueiK8dnw' }).then((currentToken) => {
                 if (currentToken) {
                     window.alert("Token is: "+currentToken);
                     // Send the token to your server and update the UI if necessary
