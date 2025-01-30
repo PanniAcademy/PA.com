@@ -1,0 +1,21 @@
+/* NEON EFFECTS */
+#webchat {
+    border: 2px solid #00ffcc;
+    box-shadow: 0px 0px 20px #00ffcc;
+    border-radius: 10px;
+}
+
+/* BOT AVATAR */
+#webchat .bpw-header-avatar {
+    background-image: url('https://your-image-link.com/bot-avatar.png'); /* Change this */
+    background-size: cover;
+    background-position: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+/* HIDE "⚡ by BotPress" */
+.bpw-powered-by {
+    display: none !important;
+}
