@@ -1,0 +1,44 @@
+<div class="webchat" style="height: 600px; width: 400px;">
+  <iframe
+    style="height: 100%; width: 100%; border: none;"
+    srcdoc='
+    <!doctype html>
+    <html lang="en">
+      <head></head>
+      <body>
+        <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+        <script defer>
+          window.botpress.on("webchat:ready", (conversationId) => {
+            botpress.open();
+          });
+window.botpress.init({
+  "botId": "e9111e86-c355-4b2d-ae20-cad8de539072",
+  "configuration": {
+    "botName": "Panni AI",
+    "botDescription": "The best AI ",
+    "website": {
+      "title": "https://panniacademy.github.io/PA.com/",
+      "link": "https://panniacademy.github.io/PA.com/"
+    },
+    "email": {
+      "title": "panniacademy@gmail.com",
+      "link": "panniacademy@gmail.com"
+    },
+    "phone": {},
+    "termsOfService": {},
+    "privacyPolicy": {},
+    "color": "#3B82F6",
+    "variant": "solid",
+    "themeMode": "light",
+    "fontFamily": "inter",
+    "radius": 1,
+    "additionalStylesheetUrl": "https://files.bpcontent.cloud/2025/01/30/06/20250130064246-8B6BS516.css",
+    "allowFileUpload": false
+  },
+  "clientId": "dbc58f7f-64f7-4b1e-91cf-f1d2664f617d"
+});
+        </script>
+      </body>
+    </html>'
+  ></iframe>
+</div>
