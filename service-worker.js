@@ -25,6 +25,7 @@ const CACHE_NAME = 'panni-academy-cache-v2';
 const urlsToCache = [
   '/index.html',
   '/app.html',
+  '/panniAI.html',
   '/Js files/web.js',
   '/Js files/app.js',
   '/manifest.json',
