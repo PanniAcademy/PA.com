@@ -12,7 +12,6 @@
     <link rel="icon" href="Images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
     <nav>
         <button onclick="openNav()">☰ Menu</button>
@@ -43,17 +42,17 @@
             </video>
         </div>
 
-        <p>Welcome to <b>PANNI ACADEMY OF WATER SPORTS</b>, located in the heart of Rajasthan! Our academy is the perfect fusion of skill and adventure, where every ripple in the water reflects passion and determination. Whether you're taking your first dive or mastering advanced techniques, this is the place for you.</p>
-
-        <p>With world-class instructors and state-of-the-art facilities, the academy offers comprehensive programs that include swimming, kayaking, windsurfing, and much more.</p>
+        <p>Welcome to <b>PANNI ACADEMY OF WATER SPORTS</b>, located in the heart of Rajasthan! Our academy is the perfect fusion of skill and adventure, where every ripple in the water reflects passion and determination. Whether you're taking your first dive or mastering advanced techniques, this is the place for you. Join our academy to discover the thrill of water sports under the guidance of experts like Mr. Panni.</p>
+        
+        <p>With world-class instructors and state-of-the-art facilities, the academy offers comprehensive programs that include swimming, kayaking, windsurfing, and much more. Experience a unique blend of desert charm and aquatic excitement, right here at Panni Academy!</p>
 
         <h3>WHAT ARE YOU WAITING FOR? EMBARK ON AN AQUATIC ADVENTURE TODAY!</h3>
     </center>
 
-    <button id="installButton">Install App</button>
+    <button id="installButton">Install App</button><br><br>
     <button onclick="toggleDarkMode()">🌙 </button>
 
-    <!-- Firebase Scripts -->
+    <!-- Firebase SDK -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-analytics.js";
@@ -79,17 +78,17 @@
                 vapidKey: 'BH1R_OTbtV-7hkbnfUkxvZFQW_0bWFHWfvuv9buVLxhJ0Y0H4NTbXHzrwVeAVRo_vIzbMWLI5WB-YERueiK8dnw'
             }).then((currentToken) => {
                 if (currentToken) {
-                    console.log("Token is: " + currentToken);
+                    console.log("Token:", currentToken);
                 } else {
-                    console.log('No registration token available. Request permission to generate one.');
+                    console.warn('No registration token available.');
                 }
             }).catch((err) => {
-                console.log('An error occurred while retrieving token.', err);
+                console.error('Token retrieval error:', err);
             });
         });
     </script>
 
-    <!-- Botpress Scripts -->
+    <!-- BotPress Chatbot -->
     <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
     <script src="https://files.bpcontent.cloud/2025/01/30/05/20250130051651-K2RNA0DU.js"></script>
 
@@ -117,6 +116,11 @@
             console.log('Speech recognition started...');
         }
 
+        function triggerPanniAI() {
+            console.log('Activating Panni AI...');
+            window.botpressWebChat.open();
+        }
+
         recognition.onresult = (event) => {
             const speechResult = event.results[event.resultIndex][0].transcript.trim().toLowerCase();
             console.log('You said:', speechResult);
@@ -126,14 +130,17 @@
             }
         };
 
-        recognition.onerror = (event) => {
-            console.error('Speech recognition error:', event.error);
+        recognition.onend = () => {
+            console.log('Speech recognition stopped. Restarting...');
+            startSpeechRecognition();
         };
 
-        function triggerPanniAI() {
-            console.log('Activating Panni AI...');
-            window.botpressWebChat.open();
-        }
+        recognition.onerror = (event) => {
+            console.error('Speech recognition error:', event.error);
+            if (event.error === 'no-speech' || event.error === 'network') {
+                startSpeechRecognition();
+            }
+        };
 
         window.addEventListener('load', requestMicrophonePermission);
     </script>
