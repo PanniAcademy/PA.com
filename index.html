@@ -104,38 +104,73 @@
 
     <!-- Voice Command Script -->
     <script>
-        const activateBtn = document.getElementById('activate-voice');
+   <script>
+    const activateBtn = document.getElementById('activate-voice');
 
-        activateBtn.addEventListener('click', () => {
-            navigator.mediaDevices.getUserMedia({ audio: true })
-                .then(() => {
-                    console.log("Microphone access granted.");
+    activateBtn.addEventListener('click', () => {
+        // Check microphone permission status
+        navigator.permissions.query({ name: 'microphone' })
+            .then(permissionStatus => {
+                if (permissionStatus.state === 'granted') {
+                    startVoiceRecognition();
+                } else if (permissionStatus.state === 'prompt') {
+                    requestMicrophoneAccess();
+                } else {
+                    alert("Microphone access is denied. Please enable it from your browser settings.");
+                }
 
-                    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-                    recognition.lang = 'en-US';
-                    recognition.continuous = true;
+                // Listen for permission changes
+                permissionStatus.onchange = () => {
+                    if (permissionStatus.state === 'granted') {
+                        startVoiceRecognition();
+                    }
+                };
+            })
+            .catch(err => {
+                console.error('Permission API error:', err);
+                requestMicrophoneAccess(); // Fallback if Permissions API isn't supported
+            });
+    });
 
-                    recognition.onresult = (event) => {
-                        const transcript = event.results[event.results.length - 1][0].transcript.trim().toLowerCase();
-                        console.log("Voice Detected:", transcript);
+    function requestMicrophoneAccess() {
+        navigator.mediaDevices.getUserMedia({ audio: true })
+            .then(() => {
+                console.log("Microphone access granted.");
+                startVoiceRecognition();
+            })
+            .catch(err => {
+                console.error("Microphone access denied:", err);
+                alert("Microphone access is required to use voice commands. Please allow it.");
+            });
+    }
 
-                        if (transcript.includes("hey panni")) {
-                            openChat();
-                        }
-                    };
+    function startVoiceRecognition() {
+        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        recognition.lang = 'en-US';
+        recognition.continuous = true;
 
-                    recognition.onerror = (event) => {
-                        console.error("Speech Recognition Error:", event.error);
-                    };
+        recognition.onresult = (event) => {
+            const transcript = event.results[event.results.length - 1][0].transcript.trim().toLowerCase();
+            console.log("Voice Detected:", transcript);
 
-                    recognition.start();
-                })
-                .catch((err) => {
-                    console.error("Microphone access denied:", err);
-                    alert("Microphone access is required to use voice commands. Please allow it.");
-                });
-        });
-    </script>
+            if (transcript.includes("hey panni")) {
+                openChat();
+            }
+        };
+
+        recognition.onerror = (event) => {
+            console.error("Speech Recognition Error:", event.error);
+            alert(`Error: ${event.error}`);
+        };
+
+        recognition.start();
+    }
+
+    function openChat() {
+        window.botpressWebChat.sendEvent({ type: "show" });
+    }
+</script>
+
 
     <!-- Firebase Script (No Changes) -->
     <script type="module">
