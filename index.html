@@ -11,201 +11,91 @@
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="Images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
-
-    <style>
-        /* Button for activating voice commands */
-        #activate-voice {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            padding: 12px 16px;
-            background-color: #3B82F6;
-            color: white;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            transition: background-color 0.3s ease;
-        }
-        #activate-voice:hover {
-            background-color: #2563EB;
-        }
-    </style>
-</head>
-
 <body>
     <nav>
-        <button onclick="openNav()">☰ Menu</button>
+  <button onclick="openNav()">☰ Menu</button>
+  
     </nav>
-
-    <!-- Sidebar Menu -->
-    <div class="sidebar" id="mySidebar">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-        <a href="admission.html">Admission</a>
-        <a href="about.html">About Academy</a>
-        <a href="achievements.html">Achievements</a>
-        <a href="shop.html">Shop</a>
-        <a href="panniAI.html">Panni AI</a>
-    </div>
-
-    <!-- Main Content -->
-    <center>
-        <div class="container">
-            <h1>PANNI ACADEMY OF WATER SPORTS</h1>
-        </div>
-        <h1><b>"DIVE INTO EXCELLENCE: WHERE WAVES MEET MASTERY!"</b></h1>
-
-        <!-- Video Background -->
-        <div class="video-container">
-            <video autoplay loop muted playsinline>
-                <source src="Images/PanniAcademt.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-
-        <p>Welcome to <b>PANNI ACADEMY OF WATER SPORTS</b>, located in the heart of Rajasthan! Our academy is the perfect fusion of skill and adventure, where every ripple in the water reflects passion and determination. Whether you're taking your first dive or mastering advanced techniques, this is the place for you.</p>
-
-        <p>With world-class instructors and state-of-the-art facilities, the academy offers comprehensive programs that include swimming, kayaking, windsurfing, and much more. Experience a unique blend of desert charm and aquatic excitement, right here at Panni Academy!</p>
-
-        <h3>WHAT ARE YOU WAITING FOR? EMBARK ON AN AQUATIC ADVENTURE TODAY!</h3>
-    </center>
-
-    <button id="installButton">Install App</button> <br><br>
-    <button onclick="toggleDarkMode()">🌙</button>
-
-    <!-- Voice Activation Button -->
-    <button id="activate-voice">🎙️ Activate Voice</button>
-
-    <!-- BotPress Webchat Integration -->
-    <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
-    <script>
-        window.botpressWebChat.init({
-            "botId": "e9111e86-c355-4b2d-ae20-cad8de539072",
-            "clientId": "dbc58f7f-64f7-4b1e-91cf-f1d2664f617d",
-            "hostUrl": "https://cdn.botpress.cloud/webchat/v2.2",
-            "botName": "Panni AI",
-            "botDescription": "The best AI",
-            "showCloseButton": true,
-            "showPoweredBy": false,
-            "theme": "dark",
-            "themeColor": "#3B82F6",
-            "backgroundColor": "#161B22",
-            "fontFamily": "Inter, sans-serif",
-            "layoutWidth": "100%",
-            "layoutHeight": "100%",
-            "disableAnimations": false
-        });
-
-        // Function to open the chatbot
-        function openChat() {
-            window.botpressWebChat.sendEvent({ type: "show" });
-        }
-    </script>
-
-    <!-- Voice Command Script -->
-    <script>
-   <script>
-    const activateBtn = document.getElementById('activate-voice');
-
-    activateBtn.addEventListener('click', () => {
-        // Check microphone permission status
-        navigator.permissions.query({ name: 'microphone' })
-            .then(permissionStatus => {
-                if (permissionStatus.state === 'granted') {
-                    startVoiceRecognition();
-                } else if (permissionStatus.state === 'prompt') {
-                    requestMicrophoneAccess();
-                } else {
-                    alert("Microphone access is denied. Please enable it from your browser settings.");
-                }
-
-                // Listen for permission changes
-                permissionStatus.onchange = () => {
-                    if (permissionStatus.state === 'granted') {
-                        startVoiceRecognition();
-                    }
-                };
-            })
-            .catch(err => {
-                console.error('Permission API error:', err);
-                requestMicrophoneAccess(); // Fallback if Permissions API isn't supported
-            });
-    });
-
-    function requestMicrophoneAccess() {
-        navigator.mediaDevices.getUserMedia({ audio: true })
-            .then(() => {
-                console.log("Microphone access granted.");
-                startVoiceRecognition();
-            })
-            .catch(err => {
-                console.error("Microphone access denied:", err);
-                alert("Microphone access is required to use voice commands. Please allow it.");
-            });
-    }
-
-    function startVoiceRecognition() {
-        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-        recognition.lang = 'en-US';
-        recognition.continuous = true;
-
-        recognition.onresult = (event) => {
-            const transcript = event.results[event.results.length - 1][0].transcript.trim().toLowerCase();
-            console.log("Voice Detected:", transcript);
-
-            if (transcript.includes("hey panni")) {
-                openChat();
-            }
-        };
-
-        recognition.onerror = (event) => {
-            console.error("Speech Recognition Error:", event.error);
-            alert(`Error: ${event.error}`);
-        };
-
-        recognition.start();
-    }
-
-    function openChat() {
-        window.botpressWebChat.sendEvent({ type: "show" });
-    }
-</script>
+<!-- Sidebar Menu -->
+<div class="sidebar" id="mySidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+  <a href="admission.html">Admission</a>
+  <a href="about.html">About Academy</a>
+  <a href="achievements.html">Achievements</a>
+  <a href="shop.html">Shop</a>
+  <a href="panniAI.html">Panni AI</a>
+</div>
 
 
-    <!-- Firebase Script (No Changes) -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-analytics.js";
-        import { getMessaging, getToken } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging.js";
+<!-- Main Content -->
+<center>
+  <div class="container">
+    <h1>PANNI ACADEMY OF WATER SPORTS</h1>
+  </div>
+  <h1><b>"DIVE INTO EXCELLENCE: WHERE WAVES MEET MASTERY!"</b></h1>
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyDzACRNe7s6Kk33xDDJizS8Q8N2UgF9frM",
-            authDomain: "panni-academy-c8629.firebaseapp.com",
-            projectId: "panni-academy-c8629",
-            storageBucket: "panni-academy-c8629.firebasestorage.app",
-            messagingSenderId: "30707262211",
-            appId: "1:30707262211:web:e56a8ff2f927fc87087f36",
-            measurementId: "G-ZFH9GHJFWQ"
-        };
+  <!-- Video Background -->
+  <div class="video-container">
+      <video autoplay loop muted playsinline>
+        <source src="Images/PanniAcademt.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+  </div>
+<br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+  <p>Welcome to <b>PANNI ACADEMY OF WATER SPORTS</b>, located in the heart of Rajasthan! Our academy is the perfect fusion of skill and adventure, where every ripple in the water reflects passion and determination. Whether you're taking your first dive or mastering advanced techniques, this is the place for you. Join our academy to discover the thrill of water sports under the guidance of experts like Mr. Panni.</p>
+  
+  <p>With world-class instructors and state-of-the-art facilities, the academy offers comprehensive programs that include swimming, kayaking, windsurfing, and much more. Experience a unique blend of desert charm and aquatic excitement, right here at Panni Academy!</p>
 
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-        const messaging = getMessaging(app);
+  <h3>WHAT ARE YOU WAITING FOR? EMBARK ON AN AQUATIC ADVENTURE TODAY!</h3>
+</center>
+<button id="installButton">Install App</button> <br> <br>
+  <button onclick="toggleDarkMode()">🌙 </button>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-analytics.js";
+  import { getMessaging, getToken } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
 
-        navigator.serviceWorker.register("service-worker.js").then(registration => {
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyDzACRNe7s6Kk33xDDJizS8Q8N2UgF9frM",
+    authDomain: "panni-academy-c8629.firebaseapp.com",
+    projectId: "panni-academy-c8629",
+    storageBucket: "panni-academy-c8629.firebasestorage.app",
+    messagingSenderId: "30707262211",
+    appId: "1:30707262211:web:e56a8ff2f927fc87087f36",
+    measurementId: "G-ZFH9GHJFWQ"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  const messaging = getMessaging(app);
+
+    navigator.serviceWorker.register("service-worker.js").then(registration => {
             getToken(messaging, {
                 serviceWorkerRegistration: registration,
-                vapidKey: 'BH1R_OTbtV-7hkbnfUkxvZFQW_0bWFHWfvuv9buVLxhJ0Y0H4NTbXHzrwVeAVRo_vIzbMWLI5WB-YERueiK8dnw'
-            }).then((currentToken) => {
+                vapidKey: 'BH1R_OTbtV-7hkbnfUkxvZFQW_0bWFHWfvuv9buVLxhJ0Y0H4NTbXHzrwVeAVRo_vIzbMWLI5WB-YERueiK8dnw' }).then((currentToken) => {
                 if (currentToken) {
-                    window.alert("Token is: " + currentToken);
+                    window.alert("Token is: "+currentToken);
+                    // Send the token to your server and update the UI if necessary
+                    // ...
                 } else {
+                    // Show permission request UI
                     window.alert('No registration token available. Request permission to generate one.');
+                    // ...
                 }
             }).catch((err) => {
-                window.alert('An error occurred while retrieving token.', err);
+                window.alert('An error occurred while retrieving token. ', err);
+                // ...
             });
         });
-    </script>
+</script>
+<script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+<script src="https://files.bpcontent.cloud/2025/01/30/05/20250130051651-K2RNA0DU.js"></script>
+    
 </body>
 </html>
