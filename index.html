@@ -92,11 +92,11 @@
     <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
     <script src="https://files.bpcontent.cloud/2025/01/30/05/20250130051651-K2RNA0DU.js"></script>
 
-    <!-- Speech Recognition Script -->
+    <!-- Optimized Speech Recognition Script -->
     <script>
         const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
         recognition.lang = 'en-US';
-        recognition.continuous = true;
+        recognition.continuous = true;  // Keeps listening without stopping
         recognition.interimResults = false;
 
         function requestMicrophonePermission() {
@@ -125,21 +125,21 @@
             const speechResult = event.results[event.resultIndex][0].transcript.trim().toLowerCase();
             console.log('You said:', speechResult);
 
-            if (speechResult === 'hey panni') {
+            if (speechResult.includes('hey panni')) {  // Trigger even if in a longer sentence
                 triggerPanniAI();
             }
-        };
-
-        recognition.onend = () => {
-            console.log('Speech recognition stopped. Restarting...');
-            startSpeechRecognition();
         };
 
         recognition.onerror = (event) => {
             console.error('Speech recognition error:', event.error);
             if (event.error === 'no-speech' || event.error === 'network') {
-                startSpeechRecognition();
+                setTimeout(startSpeechRecognition, 1000);  // Auto-restart after 1 second delay
             }
+        };
+
+        recognition.onend = () => {
+            console.log('Speech recognition stopped. Restarting automatically...');
+            setTimeout(startSpeechRecognition, 1000);  // Prevents rapid start/stop cycles
         };
 
         window.addEventListener('load', requestMicrophonePermission);
