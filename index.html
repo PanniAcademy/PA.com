@@ -118,14 +118,15 @@
 
         function triggerPanniAI() {
             console.log('Activating Panni AI...');
-            window.botpressWebChat.open();
+            window.botpressWebChat.sendEvent({ type: "show" }); // Opens the chatbot
         }
 
         recognition.onresult = (event) => {
             const speechResult = event.results[event.resultIndex][0].transcript.trim().toLowerCase();
             console.log('You said:', speechResult);
 
-            if (speechResult.includes('hello')) {  // Trigger even if in a longer sentence
+            const triggerWords = ['hello', 'hi', 'hey', 'hey panni'];
+            if (triggerWords.some(word => speechResult.includes(word))) {
                 triggerPanniAI();
             }
         };
@@ -133,13 +134,13 @@
         recognition.onerror = (event) => {
             console.error('Speech recognition error:', event.error);
             if (event.error === 'no-speech' || event.error === 'network') {
-                setTimeout(startSpeechRecognition, 1000);  // Auto-restart after 1 second delay
+                setTimeout(startSpeechRecognition, 1000); // Auto-restart after 1 second delay
             }
         };
 
         recognition.onend = () => {
             console.log('Speech recognition stopped. Restarting automatically...');
-            setTimeout(startSpeechRecognition, 1000);  // Prevents rapid start/stop cycles
+            setTimeout(startSpeechRecognition, 1000); // Prevents rapid start/stop cycles
         };
 
         window.addEventListener('load', requestMicrophonePermission);
