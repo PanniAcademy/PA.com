@@ -8,7 +8,8 @@
     <link rel="icon" href="Images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <script defer src="Js files/script.js"></script>
-    <script defer src="Js files/hotword.js"></script> <!-- Hotword.js Integration -->
+    <!-- A-Frame for AR -->
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
 </head>
 
 <body>
@@ -31,22 +32,39 @@
         </div>
         <h1><b>"DIVE INTO EXCELLENCE: WHERE WAVES MEET MASTERY!"</b></h1>
     </center>
-        <!-- Video Background -->
-        <div class="video-container">
-            <video autoplay loop muted playsinline>
-                <source src="Images/PanniAcademt.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
 
-        <p>Welcome to <b>PANNI ACADEMY OF WATER SPORTS</b>, located in the heart of Rajasthan! Our academy is the perfect fusion of skill and adventure, where every ripple in the water reflects passion and determination. Whether you're taking your first dive or mastering advanced techniques, this is the place for you. Join our academy to discover the thrill of water sports under the guidance of experts like Mr. Panni.</p>
-        
-        <p>With world-class instructors and state-of-the-art facilities, the academy offers comprehensive programs that include swimming, kayaking, windsurfing, and much more. Experience a unique blend of desert charm and aquatic excitement, right here at Panni Academy!</p>
+    <!-- Video Background -->
+    <div class="video-container">
+        <video autoplay loop muted playsinline>
+            <source src="Images/PanniAcademt.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
 
-        <h3>WHAT ARE YOU WAITING FOR? EMBARK ON AN AQUATIC ADVENTURE TODAY!</h3>
-    </center>
+    <p>Welcome to <b>PANNI ACADEMY OF WATER SPORTS</b>, located in the heart of Rajasthan! Our academy is the perfect fusion of skill and adventure, where every ripple in the water reflects passion and determination. Whether you're taking your first dive or mastering advanced techniques, this is the place for you. Join our academy to discover the thrill of water sports under the guidance of experts like Mr. Panni.</p>
+    
+    <p>With world-class instructors and state-of-the-art facilities, the academy offers comprehensive programs that include swimming, kayaking, windsurfing, and much more. Experience a unique blend of desert charm and aquatic excitement, right here at Panni Academy!</p>
+
+    <h3>WHAT ARE YOU WAITING FOR? EMBARK ON AN AQUATIC ADVENTURE TODAY!</h3>
+
     <button id="installButton">Install App</button>
     <button onclick="toggleDarkMode()">🌙</button>
+    <button onclick="requestCameraPermission()">View AR Experience</button> <!-- Permission Button -->
+
+    <!-- AR Scene (Hidden by Default) -->
+    <div id="ar-container" style="display: none;">
+        <a-scene embedded arjs>
+            <a-box position="0 0.5 0" color="#4CC3D9" rotation="45 45 0"></a-box>
+            <a-sphere position="2 1 0" radius="0.5" color="#EF2D5E"></a-sphere>
+            <a-plane position="0 0 0" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+            <a-marker-camera preset="hiro"></a-marker-camera>
+        </a-scene>
+    </div>
+
+    <!-- Permission Message -->
+    <div id="permission-message" style="display: none; color: red; text-align: center;">
+        Camera access is required to view the AR experience. Please allow permission and try again.
+    </div>
 
     <!-- Firebase SDK -->
     <script type="module">
@@ -88,20 +106,25 @@
     <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
     <script src="https://files.bpcontent.cloud/2025/01/30/05/20250130051651-K2RNA0DU.js"></script>
 
-    <!-- Hotword.js Wake Word Detection -->
+    <!-- AR Permission & Toggle Script -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const hotword = new Hotword({
-                hotwords: ['hello'],   // Custom wake word
-                sensitivity: 0.6,          // Adjust for detection accuracy
-                onHotwordDetected: () => {
-                    window.alert('Hello detected!');
-                    window.botpressWebChat.sendEvent({ type: "show" }); // Trigger Panni AI
-                }
-            });
+        function requestCameraPermission() {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(function (stream) {
+                    toggleAR();
+                    stream.getTracks().forEach(track => track.stop()); // Stop the camera after checking
+                })
+                .catch(function (err) {
+                    console.error("Camera access denied:", err);
+                    document.getElementById('permission-message').style.display = 'block';
+                });
+        }
 
-            hotword.start(); // Start hotword detection
-        });
+        function toggleAR() {
+            const arContainer = document.getElementById('ar-container');
+            arContainer.style.display = arContainer.style.display === 'none' ? 'block' : 'none';
+            document.getElementById('permission-message').style.display = 'none';
+        }
     </script>
 </body>
 </html>
