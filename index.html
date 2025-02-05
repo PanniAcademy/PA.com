@@ -92,10 +92,10 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const hotword = new Hotword({
-                hotwords: ['hey panni'],   // Custom wake word
+                hotwords: ['hello'],   // Custom wake word
                 sensitivity: 0.6,          // Adjust for detection accuracy
                 onHotwordDetected: () => {
-                    console.log('Hey Panni detected!');
+                    window.alert('Hello detected!');
                     window.botpressWebChat.sendEvent({ type: "show" }); // Trigger Panni AI
                 }
             });
