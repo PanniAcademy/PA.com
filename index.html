@@ -1,23 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="google-site-verification" content="FwC4ih-MvEP7q2f_WlNE6oTX_b5mA1uc7dcxmpoW9sM" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script defer src="Js files/script.js"></script>
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
     <title>PANNI ACADEMY</title>
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="Images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
+    <script defer src="Js files/script.js"></script>
+    <script defer src="Js files/hotword.js"></script> <!-- Hotword.js Integration -->
 </head>
+
 <body>
     <nav>
         <button onclick="openNav()">☰ Menu</button>
     </nav>
 
-    <!-- Sidebar Menu -->
     <div class="sidebar" id="mySidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
         <a href="admission.html">Admission</a>
@@ -27,13 +25,12 @@
         <a href="panniAI.html">Panni AI</a>
     </div>
 
-    <!-- Main Content -->
     <center>
         <div class="container">
             <h1>PANNI ACADEMY OF WATER SPORTS</h1>
         </div>
         <h1><b>"DIVE INTO EXCELLENCE: WHERE WAVES MEET MASTERY!"</b></h1>
-
+    </center>
         <!-- Video Background -->
         <div class="video-container">
             <video autoplay loop muted playsinline>
@@ -48,9 +45,8 @@
 
         <h3>WHAT ARE YOU WAITING FOR? EMBARK ON AN AQUATIC ADVENTURE TODAY!</h3>
     </center>
-
-    <button id="installButton">Install App</button><br><br>
-    <button onclick="toggleDarkMode()">🌙 </button>
+    <button id="installButton">Install App</button>
+    <button onclick="toggleDarkMode()">🌙</button>
 
     <!-- Firebase SDK -->
     <script type="module">
@@ -78,7 +74,7 @@
                 vapidKey: 'BH1R_OTbtV-7hkbnfUkxvZFQW_0bWFHWfvuv9buVLxhJ0Y0H4NTbXHzrwVeAVRo_vIzbMWLI5WB-YERueiK8dnw'
             }).then((currentToken) => {
                 if (currentToken) {
-                    console.log("Token:", currentToken);
+                    console.log("Firebase Token:", currentToken);
                 } else {
                     console.warn('No registration token available.');
                 }
@@ -92,58 +88,20 @@
     <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
     <script src="https://files.bpcontent.cloud/2025/01/30/05/20250130051651-K2RNA0DU.js"></script>
 
-    <!-- Optimized Speech Recognition Script -->
+    <!-- Hotword.js Wake Word Detection -->
     <script>
-        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-        recognition.lang = 'en-US';
-        recognition.continuous = true;  // Keeps listening without stopping
-        recognition.interimResults = false;
+        document.addEventListener('DOMContentLoaded', () => {
+            const hotword = new Hotword({
+                hotwords: ['hey panni'],   // Custom wake word
+                sensitivity: 0.6,          // Adjust for detection accuracy
+                onHotwordDetected: () => {
+                    console.log('Hey Panni detected!');
+                    window.botpressWebChat.sendEvent({ type: "show" }); // Trigger Panni AI
+                }
+            });
 
-        function requestMicrophonePermission() {
-            navigator.mediaDevices.getUserMedia({ audio: true })
-                .then(() => {
-                    console.log('Microphone permission granted.');
-                    startSpeechRecognition();
-                })
-                .catch((error) => {
-                    console.error('Microphone permission denied:', error);
-                    alert('Microphone permission is required for voice activation.');
-                });
-        }
-
-        function startSpeechRecognition() {
-            recognition.start();
-            console.log('Speech recognition started...');
-        }
-
-        function triggerPanniAI() {
-            console.log('Activating Panni AI...');
-            window.botpressWebChat.sendEvent({ type: "show" }); // Opens the chatbot
-        }
-
-        recognition.onresult = (event) => {
-            const speechResult = event.results[event.resultIndex][0].transcript.trim().toLowerCase();
-            console.log('You said:', speechResult);
-
-            const triggerWords = ['hello', 'hi', 'hey', 'hey panni'];
-            if (triggerWords.some(word => speechResult.includes(word))) {
-                triggerPanniAI();
-            }
-        };
-
-        recognition.onerror = (event) => {
-            console.error('Speech recognition error:', event.error);
-            if (event.error === 'no-speech' || event.error === 'network') {
-                setTimeout(startSpeechRecognition, 1000); // Auto-restart after 1 second delay
-            }
-        };
-
-        recognition.onend = () => {
-            console.log('Speech recognition stopped. Restarting automatically...');
-            setTimeout(startSpeechRecognition, 1000); // Prevents rapid start/stop cycles
-        };
-
-        window.addEventListener('load', requestMicrophonePermission);
+            hotword.start(); // Start hotword detection
+        });
     </script>
 </body>
 </html>
