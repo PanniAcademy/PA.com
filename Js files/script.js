@@ -27,3 +27,19 @@ installButton.style.display = "block";
 installButton.addEventListener("click", () => {
     alert("Please install from the browser menu.");
 });
+function requestAvatarPermission() {
+    navigator.mediaDevices.getUserMedia({ video: true })
+        .then(function (stream) {
+            toggleAvatar();
+            stream.getTracks().forEach(track => track.stop());
+        })
+        .catch(function (err) {
+            console.error("Camera access denied:", err);
+            alert("Camera access is required to view Panni AI Avatar.");
+        });
+}
+
+function toggleAvatar() {
+    const avatarContainer = document.getElementById('ar-avatar-container');
+    avatarContainer.style.display = avatarContainer.style.display === 'none' ? 'block' : 'none';
+}
