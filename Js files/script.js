@@ -1,3 +1,25 @@
+AFRAME.registerComponent('collision-listener', {
+    init: function () {
+        let avatar = this.el;
+        avatar.addEventListener('collide', function (event) {
+            console.log('Avatar was pushed!');
+            avatar.setAttribute('animation', {
+                property: 'position',
+                to: '-1 0.2 1',
+                dur: 500,
+                easing: 'easeOutQuad',
+                loop: 2,
+                dir: 'alternate'
+            });
+        });
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelector("#avatar").setAttribute("collision-listener", "");
+});
+
+
 // Open Sidebar
 function openNav() {
     document.getElementById("mySidebar").style.width = "250px";
